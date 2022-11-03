@@ -1,0 +1,32 @@
+---
+title: "Project 3"
+author: "Julia English"
+date: "2022-11-03"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(foreign)
+```
+
+```{r}
+madese <- read.dta('madese (1).dta')
+```
+
+```{r}
+madese2 <- madese %>%
+  select(district_name, type, salary, class_size, retained_pct) %>%
+  filter(type == "District") %>%
+  mutate(salary2 = salary / 10000)
+
+madese2 <- madese2 %>%
+  filter(!is.na(salary2))
+
+```
+
